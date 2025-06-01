@@ -1,14 +1,21 @@
 {
   "compilerOptions": {
     "target": "ES2021",
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "strict": true,
+    "module": "commonjs",
+    "outDir": "dist",
+    "rootDir": ".",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@drone1/common/*": ["packages/common/src/*"]
+    },
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "dist",
-    "rootDir": "."
+    "strict": true,
+    "noImplicitAny": true
   },
-  "include": ["apps", "packages"]
+  "include": ["apps", "packages", "types"],
+  "exclude": ["node_modules", "dist"]
 }

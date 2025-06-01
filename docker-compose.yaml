@@ -1,0 +1,41 @@
+version: "3.9"
+services:
+  api-gateway:
+    build: ./apps/api-gateway
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./apps/api-gateway/.env
+    depends_on:
+      - goal-engine
+  goal-engine:
+    build: ./packages/goal-engine
+    ports:
+      - "3001:3001"
+    env_file:
+      - ./packages/goal-engine/.env
+  nats:
+    image: nats:2.10-alpine
+    ports: [4222:4222]
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: drone1
+      POSTGRES_PASSWORD: drone1
+      POSTGRES_DB: drone1
+    ports: [5432:5432]
+  neo4j:
+    image: neo4j:5.18-community
+    environment:
+      NEO4J_AUTH: neo4j/drone1
+    ports: [7687:7687, 7474:7474]
+  redis:
+    image: redis:7-alpine
+    ports: [6379:6379]
+  minio:
+    image: minio/minio
+    command: server /data
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    ports: [9000:9000, 9001:9001]

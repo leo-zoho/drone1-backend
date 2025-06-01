@@ -1,11 +1,26 @@
 {
   "name": "goal-engine",
-  "version": "1.0.0",
-  "main": "src/index.ts",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "ts-node-dev src/index.ts"
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "build": "tsc",
+    "lint": "eslint . --ext .ts",
+    "test": "vitest",
+    "format": "prettier --write ."
   },
   "dependencies": {
-    "fastify": "^4.0.0"
+    "fastify": "^4.27.2",
+    "fastify-swagger": "^7.6.0",
+    "pino-pretty": "^10.3.0",
+    "@drone1/common": "*"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5",
+    "eslint": "^8.58.0",
+    "prettier": "^3.8.0",
+    "vitest": "^1.6.0"
   }
 }
