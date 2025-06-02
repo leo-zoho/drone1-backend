@@ -1,0 +1,12 @@
+# Exported from Render on 2025-06-02T04:29:32Z
+services:
+- type: web
+  name: drone1-backend
+  runtime: docker
+  repo: https://github.com/leo-zoho/drone1-backend
+  plan: free
+  region: oregon
+  dockerContext: .
+  dockerfilePath: ./Dockerfile
+  autoDeployTrigger: commit
+version: "1"
